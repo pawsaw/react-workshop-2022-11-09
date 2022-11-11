@@ -1,4 +1,5 @@
 import './App.css';
+import { Counter } from './components/Counter';
 import { SimpleName } from './components/SimpleName';
 
 function App() {
@@ -6,6 +7,8 @@ function App() {
     <div>
       <h1>Book Manager</h1>
       <SimpleName />
+      <Counter />
+      <Counter />
     </div>
   );
 }
