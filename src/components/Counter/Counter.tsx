@@ -1,30 +1,15 @@
-import { CSSProperties, useState } from 'react';
+import { CSSProperties } from 'react';
+import { useCounter } from '../../domain/counter';
 
-export interface OnValueChanged {
-  (value: number): void;
-}
+export interface CounterProps {}
 
-export interface CounterProps {
-  onValueChanged?: OnValueChanged;
-  value: number;
-}
-
-export const Counter: React.FC<CounterProps> = ({ onValueChanged, value }) => {
-  const increment = () => {
-    const newValue = value + 1;
-
-    onValueChanged?.(newValue);
-  };
-
-  const decrement = () => {
-    const newValue = value - 1;
-    onValueChanged?.(newValue);
-  };
+export const Counter: React.FC<CounterProps> = () => {
+  const { count, increment, decrement } = useCounter();
 
   return (
     <div style={style.container}>
       <button onClick={decrement}>-</button>
-      <span style={style.value}>{value}</span>
+      <span style={style.value}>{count}</span>
       <button onClick={increment}>+</button>
     </div>
   );
