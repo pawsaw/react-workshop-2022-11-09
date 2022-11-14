@@ -1,20 +1,30 @@
 import { CSSProperties, useState } from 'react';
 
-export const Counter: React.FC = () => {
-  const [count, setCount] = useState(0);
+export interface OnValueChanged {
+  (value: number): void;
+}
 
-  function increment() {
-    setCount(count + 1);
-  }
+export interface CounterProps {
+  onValueChanged?: OnValueChanged;
+  value: number;
+}
 
-  function decrement() {
-    setCount(count - 1);
-  }
+export const Counter: React.FC<CounterProps> = ({ onValueChanged, value }) => {
+  const increment = () => {
+    const newValue = value + 1;
+
+    onValueChanged?.(newValue);
+  };
+
+  const decrement = () => {
+    const newValue = value - 1;
+    onValueChanged?.(newValue);
+  };
 
   return (
     <div style={style.container}>
       <button onClick={decrement}>-</button>
-      <span style={style.value}>{count}</span>
+      <span style={style.value}>{value}</span>
       <button onClick={increment}>+</button>
     </div>
   );

@@ -1,14 +1,16 @@
 import './App.css';
-import { Counter } from './components/Counter';
-import { SimpleName } from './components/SimpleName';
+import { BookList, OnBookClicked } from './components/BookList';
+import { books } from './data/books';
 
 function App() {
+  const onBookClicked: OnBookClicked = (book) => {
+    alert(book.price);
+  };
+
   return (
     <div>
       <h1>Book Manager</h1>
-      <SimpleName />
-      <Counter />
-      <Counter />
+      <BookList books={books} onBookClicked={onBookClicked} />
     </div>
   );
 }
