@@ -1,5 +1,5 @@
-import { Book } from '../../../domain/books';
-import { useTheme } from '../../../domain/theme';
+import { Book } from '../../../../domain/books';
+import { useTheme } from '../../../../domain/theme';
 import { OnBookClicked } from '../OnBookClicked';
 
 export interface BookListItemProps {

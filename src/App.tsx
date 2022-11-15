@@ -1,19 +1,12 @@
 import { useState } from 'react';
+import { Link, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { BookList, OnBookClicked } from './components/BookList';
-import { Counter } from './components/Counter';
-import { useBooks } from './domain/books';
 import { CounterProvider } from './domain/counter';
 import { ThemeProvider } from './domain/theme';
+import { BooksScreen } from './screens/BooksScreen';
+import { PlaygroundScreen } from './screens/PlaygroundScreen';
 
 function App() {
-  const { books, reload } = useBooks();
-  // const { book } = useBook('');
-
-  const onBookClicked: OnBookClicked = (book) => {
-    alert(book.price);
-  };
-
   const [count, setCount] = useState(0);
 
   const increment = () => {
@@ -39,14 +32,17 @@ function App() {
       >
         <div>
           <h1>Book Manager</h1>
-          <Counter />
-          <button onClick={() => reload()}>Reload Books</button>
-          {books ? (
-            <BookList books={books} onBookClicked={onBookClicked} />
-          ) : (
-            <span>Loading books...</span>
-          )}
-          {/* {book ? <BookDetail book={book} /> : <span>Loading book...</span>} */}
+          <nav>
+            <Link to="/books">Books</Link>
+            <Link to="/playground">Playground</Link>
+          </nav>
+          <div>
+            <Switch>
+              <Route path="/books" component={BooksScreen} />
+              <Route path="/playground" component={PlaygroundScreen} />
+              <Redirect to="/books" />
+            </Switch>
+          </div>
         </div>
       </CounterProvider>
     </ThemeProvider>

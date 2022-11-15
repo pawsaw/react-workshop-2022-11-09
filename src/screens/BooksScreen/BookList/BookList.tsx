@@ -1,5 +1,5 @@
-import { Book } from '../../domain/books';
-import { useCounter } from '../../domain/counter';
+import { Book } from '../../../domain/books';
+import { useCounter } from '../../../domain/counter';
 import { BookListItem } from './BookListItem/BookListItem';
 import { OnBookClicked } from './OnBookClicked';
 
