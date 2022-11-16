@@ -3,6 +3,7 @@ import { Link, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { CounterProvider } from './domain/counter';
 import { ThemeProvider } from './domain/theme';
+import { BookDetailsScreen } from './screens/BookDetailsScreen';
 import { BooksScreen } from './screens/BooksScreen';
 import { PlaygroundScreen } from './screens/PlaygroundScreen';
 
@@ -38,6 +39,7 @@ function App() {
           </nav>
           <div>
             <Switch>
+              <Route path="/books/:isbn" component={BookDetailsScreen} />
               <Route path="/books" component={BooksScreen} />
               <Route path="/playground" component={PlaygroundScreen} />
               <Redirect to="/books" />
